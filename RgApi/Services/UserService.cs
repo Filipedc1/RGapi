@@ -20,6 +20,7 @@ namespace RgApi.Services
         {
             return await _repo.AppUsers
                               .Include(x => x.Claims)
+                              .Include(x => x.Address)
                               .FirstOrDefaultAsync(u => u.Id == id);
         }
 
@@ -27,6 +28,7 @@ namespace RgApi.Services
         {
             return await _repo.AppUsers
                               .Include(x => x.Claims)
+                              .Include(x => x.Address)
                               .FirstOrDefaultAsync(u => u.UserName == username);
         }
 

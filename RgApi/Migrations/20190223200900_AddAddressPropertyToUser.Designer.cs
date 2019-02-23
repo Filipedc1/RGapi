@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RgApi;
 
 namespace RgApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190223200900_AddAddressPropertyToUser")]
+    partial class AddAddressPropertyToUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,10 +203,6 @@ namespace RgApi.Migrations
 
                     b.Property<string>("ProfileImageUrl");
 
-                    b.Property<int>("Rating");
-
-                    b.Property<int?>("SalonId");
-
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -224,30 +222,7 @@ namespace RgApi.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("SalonId");
-
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("RgApi.Models.Salon", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AddressId");
-
-                    b.Property<string>("License");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("Salons");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -296,17 +271,6 @@ namespace RgApi.Migrations
                 });
 
             modelBuilder.Entity("RgApi.Models.AppUser", b =>
-                {
-                    b.HasOne("RgApi.Models.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.HasOne("RgApi.Models.Salon", "Salon")
-                        .WithMany()
-                        .HasForeignKey("SalonId");
-                });
-
-            modelBuilder.Entity("RgApi.Models.Salon", b =>
                 {
                     b.HasOne("RgApi.Models.Address", "Address")
                         .WithMany()

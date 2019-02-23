@@ -11,7 +11,8 @@ namespace RgApi
 {
     public class AppDbContext : IdentityDbContext<AppUser>
     {
-        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<AppUser> AppUsers  { get; set; }
+        public DbSet<Salon> Salons      { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)

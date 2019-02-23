@@ -15,6 +15,7 @@ namespace RgApi.ViewModels
         public string LastName { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]
@@ -24,7 +25,26 @@ namespace RgApi.ViewModels
         public string UserName { get; set; }
 
         [Required]
+        [MaxLength(128)]
+        public string Street { get; set; }
+
+        [Required]
+        [MaxLength(90)]
+        public string City { get; set; }
+
+        [Required]
+        public string State { get; set; }
+
+        [Required]
+        [MaxLength(20)]
+        public string Zip { get; set; }
+
+        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        // If Salon
+        public string SalonName { get; set; }
+        public string SalonLicense { get; set; }
     }
 }

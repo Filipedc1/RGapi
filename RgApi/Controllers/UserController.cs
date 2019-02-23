@@ -63,10 +63,11 @@ namespace RgApi.Controllers
         //Need to determine who is registering (Salon or customer)
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<ActionResult> RegisterAsync(RegisterViewModel model)
+        public async Task<ActionResult> RegisterAsync(RegisterViewModel model, bool isSalon)
         {
             var hasher = new PasswordHasher<AppUser>();
 
+            // if a salon, put address within the salon table
             var user = new AppUser
             {
                 FirstName = model.FirstName,
@@ -74,6 +75,8 @@ namespace RgApi.Controllers
                 Email = model.Email,
                 UserName = model.UserName,
                 PhoneNumber = model.PhoneNumber,
+                Address = (isSalon == false) ? BuildAddress(model) : null,
+                Salon = (isSalon == true) ? BuildSalon(model) : null,
                 MemberSince = DateTime.Now
             };
 
@@ -87,7 +90,7 @@ namespace RgApi.Controllers
                 {
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid( ).ToString( )),
                     new Claim(ClaimTypes.Name, user.UserName),
-                    //new Claim(ClaimTypes.Role, "CEO") //need to determine what role the person is in
+                    new Claim(ClaimTypes.Role, (isSalon == true) ? "Salon" : "Customer") 
                 };
 
                 await _userManager.AddClaimsAsync(user, claims);
@@ -96,6 +99,14 @@ namespace RgApi.Controllers
             }
 
             return BadRequest();
+        }
+
+        // USED FOR TESTING AUTHORIZATION
+        [Authorize(Policy = "Admin")]
+        [HttpPost("delete")]
+        public ActionResult Delete()
+        {
+            return Ok();
         }
 
         private async Task<string> GenerateJwtToken(AppUser user)
@@ -116,6 +127,32 @@ namespace RgApi.Controllers
             );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        #endregion
+
+        #region Helpers
+
+        private Address BuildAddress(RegisterViewModel model)
+        {
+            return new Address
+            {
+                Street = model.Street,
+                City = model.City,
+                State = model.State,
+                Zip = model.Zip,
+            };
+        }
+
+        private Salon BuildSalon(RegisterViewModel model)
+        {
+            return new Salon
+            {
+                Name = model.SalonName,
+                License = model.SalonLicense,
+                PhoneNumber = model.PhoneNumber,
+                Address = BuildAddress(model)
+            };
         }
 
         #endregion

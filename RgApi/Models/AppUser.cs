@@ -12,7 +12,11 @@ namespace RgApi.Models
         public string ProfileImageUrl   { get; set; }
         public string FirstName         { get; set; }
         public string LastName          { get; set; }
+        public int Rating               { get; set; }
+
         public DateTime MemberSince     { get; set; }
+        public Address Address          { get; set; }
+        public Salon Salon              { get; set; }
 
         public virtual IEnumerable<IdentityUserClaim<string>> Claims    { get; set; }
         public virtual ICollection<IdentityUserToken<string>> Tokens    { get; set; }

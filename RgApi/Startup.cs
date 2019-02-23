@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -67,6 +68,13 @@ namespace RgApi
                             ValidateLifetime = true,
                         };
                     });
+
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("Admin",     policy => policy.RequireClaim("Admin"));
+                opt.AddPolicy("Salons",    policy => policy.RequireClaim("Salon"));
+                opt.AddPolicy("Customers", policy => policy.RequireClaim("Customer"));
+            });
 
             // add auto mapper
             services.AddAutoMapper();
