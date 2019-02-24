@@ -11,8 +11,16 @@ namespace RgApi
 {
     public class AppDbContext : IdentityDbContext<AppUser>
     {
-        public DbSet<AppUser> AppUsers  { get; set; }
-        public DbSet<Salon> Salons      { get; set; }
+        public DbSet<AppUser> AppUsers                          { get; set; }
+        public DbSet<Salon> Salons                              { get; set; }
+        public DbSet<Product> Products                          { get; set; }
+        public DbSet<ProductCollection> ProductCollections      { get; set; }
+        public DbSet<CustomerPrice> CustomerPrices              { get; set; }
+        public DbSet<SalonPrice> SalonPrices                    { get; set; }
+
+        // Junction table
+        public DbSet<CollectionProduct> CollectionProducts      { get; set; }
+
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -42,6 +50,9 @@ namespace RgApi
                    .WithOne()
                    .HasForeignKey(ut => ut.UserId)
                    .IsRequired();
+
+            builder.Entity<CollectionProduct>()
+                   .HasKey(k => new { k.ProductCollectionId, k.ProductId });
         }
     }
 }

@@ -88,7 +88,6 @@ namespace RgApi.Controllers
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid( ).ToString( )),
                     new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(ClaimTypes.Role, (isSalon == true) ? "Salon" : "Customer") 
                 };
@@ -112,6 +111,7 @@ namespace RgApi.Controllers
         private async Task<string> GenerateJwtToken(AppUser user)
         {
             var claims = await _userManager.GetClaimsAsync(user);
+            claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:JwtKey"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

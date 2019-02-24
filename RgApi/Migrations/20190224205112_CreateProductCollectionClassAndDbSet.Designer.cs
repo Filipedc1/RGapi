@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RgApi;
 
 namespace RgApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190224205112_CreateProductCollectionClassAndDbSet")]
+    partial class CreateProductCollectionClassAndDbSet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,38 +244,21 @@ namespace RgApi.Migrations
                     b.ToTable("CollectionProducts");
                 });
 
-            modelBuilder.Entity("RgApi.Models.CustomerPrice", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Cost");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int?>("ProductId");
-
-                    b.Property<string>("Size");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CustomerPrices");
-                });
-
             modelBuilder.Entity("RgApi.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("Cost");
+
                     b.Property<string>("Description");
 
                     b.Property<string>("ImageUrl");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("Size");
 
                     b.HasKey("ProductId");
 
@@ -316,27 +301,6 @@ namespace RgApi.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("Salons");
-                });
-
-            modelBuilder.Entity("RgApi.Models.SalonPrice", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Cost");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int?>("ProductId");
-
-                    b.Property<string>("Size");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("SalonPrices");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -408,25 +372,11 @@ namespace RgApi.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("RgApi.Models.CustomerPrice", b =>
-                {
-                    b.HasOne("RgApi.Models.Product", "Product")
-                        .WithMany("CustomerPrices")
-                        .HasForeignKey("ProductId");
-                });
-
             modelBuilder.Entity("RgApi.Models.Salon", b =>
                 {
                     b.HasOne("RgApi.Models.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
-                });
-
-            modelBuilder.Entity("RgApi.Models.SalonPrice", b =>
-                {
-                    b.HasOne("RgApi.Models.Product", "Product")
-                        .WithMany("SalonPrices")
-                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }
