@@ -16,6 +16,14 @@ namespace RgApi.Services
             _repo = context;
         }
 
+        public async Task<IEnumerable<AppUser>> GetAllAsync()
+        {
+            return await _repo.AppUsers
+                              .Include(x => x.Claims)
+                              .Include(x => x.Address)
+                              .ToListAsync();
+        }
+
         public async Task<AppUser> GetByIdAsync(string id)
         {
             return await _repo.AppUsers

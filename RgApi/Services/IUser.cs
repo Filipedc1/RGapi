@@ -8,6 +8,7 @@ namespace RgApi.Services
 {
     public interface IUser
     {
+        Task<IEnumerable<AppUser>> GetAllAsync();
         Task<AppUser> GetByIdAsync(string id);
         Task<AppUser> GetByUsernameAsync(string username);
         Task SetProfileImage(string id, string url);
