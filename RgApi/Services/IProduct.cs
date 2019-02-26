@@ -10,13 +10,13 @@ namespace RgApi.Services
     {
         // Products
         Task<Product> GetProductByIdAsync(int id);
-        Task<IEnumerable<Product>> GetAllProductsAsync();
+        Task<List<Product>> GetAllProductsAsync();
         Task CreateProductAsync(Product product);
         Task DeleteProductAsync(int id);
 
         // Collections
         Task<ProductCollection> GetProductCollectionByIdAsync(int id);
-        Task<IEnumerable<ProductCollection>> GetAllProductCollectionsAsync();
+        Task<List<ProductCollection>> GetAllProductCollectionsAsync();
         Task CreateProductCollectionAsync(ProductCollection collection);
         Task DeleteProductCollectionAsync(int id);
     }

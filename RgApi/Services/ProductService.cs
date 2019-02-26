@@ -18,7 +18,7 @@ namespace RgApi.Services
 
         #region Product Methods
         
-        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        public async Task<List<Product>> GetAllProductsAsync()
         {
             return await _repo.Products
                               .Include(p => p.CollectionProducts)
@@ -27,7 +27,9 @@ namespace RgApi.Services
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _repo.Products
+                              .Include(p => p.CollectionProducts)
+                              .FirstOrDefaultAsync(p => p.ProductId == id);
         }
 
         public async Task CreateProductAsync(Product product)
@@ -44,14 +46,18 @@ namespace RgApi.Services
 
         #region Collection Methods
 
-        public async Task<IEnumerable<ProductCollection>> GetAllProductCollectionsAsync()
+        public async Task<List<ProductCollection>> GetAllProductCollectionsAsync()
         {
-            throw new NotImplementedException();
+            return await _repo.ProductCollections
+                              .Include(p => p.CollectionProducts)
+                              .ToListAsync();
         }
 
         public async Task <ProductCollection> GetProductCollectionByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _repo.ProductCollections
+                              .Include(p => p.CollectionProducts)
+                              .FirstOrDefaultAsync(p => p.ProductCollectionId == id);
         }
 
         public async Task CreateProductCollectionAsync(ProductCollection collection)

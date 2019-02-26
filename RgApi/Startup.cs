@@ -80,6 +80,7 @@ namespace RgApi
             services.AddAutoMapper();
 
             services.AddScoped<IUser, UserService>();
+            services.AddScoped<IProduct, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
