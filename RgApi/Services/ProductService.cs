@@ -22,6 +22,8 @@ namespace RgApi.Services
         {
             return await _repo.Products
                               .Include(p => p.CollectionProducts)
+                              .Include(p => p.CustomerPrices)
+                              .Include(p => p.SalonPrices)
                               .ToListAsync();
         }
 
