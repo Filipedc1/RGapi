@@ -7,9 +7,9 @@ namespace RgApi.Models
 {
     public class CustomerPrice
     {
-        public int Id       { get; set; }
-        public string Size  { get; set; }
-        public double Cost  { get; set; }
+        public int Id        { get; set; }
+        public string Size   { get; set; }
+        public decimal Cost  { get; set; }
 
         public virtual Product Product { get; set; }
     }
