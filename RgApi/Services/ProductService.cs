@@ -31,6 +31,8 @@ namespace RgApi.Services
         {
             return await _repo.Products
                               .Include(p => p.CollectionProducts)
+                              .Include(p => p.CustomerPrices)
+                              .Include(p => p.SalonPrices)
                               .FirstOrDefaultAsync(p => p.ProductId == id);
         }
 
@@ -52,6 +54,7 @@ namespace RgApi.Services
         {
             return await _repo.ProductCollections
                               .Include(p => p.CollectionProducts)
+                                .ThenInclude(p => p.Product)
                               .ToListAsync();
         }
 
@@ -59,6 +62,7 @@ namespace RgApi.Services
         {
             return await _repo.ProductCollections
                               .Include(p => p.CollectionProducts)
+                                .ThenInclude(p => p.Product)
                               .FirstOrDefaultAsync(p => p.ProductCollectionId == id);
         }
 

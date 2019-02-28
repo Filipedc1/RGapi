@@ -63,6 +63,18 @@ namespace RgApi.Controllers
             return Ok(product);
         }
 
+        [HttpGet("getproductcollections")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductCollectionsAsync()
+        {
+            var collections = await _productService.GetAllProductCollectionsAsync();
+
+            if (collections is null)
+                return NotFound();
+
+            return Ok(collections);
+        }
+
         //need to figure out how to add product, and add the collections it will belong to.
         //public async Task<ActionResult> AddProduct(AddProductViewModel model)
         //{
