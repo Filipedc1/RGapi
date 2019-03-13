@@ -20,4 +20,17 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\images\amazon.jpg" />
+    <None Include="wwwroot\images\bbcreme.jpg" />
+    <None Include="wwwroot\images\cc.jpg" />
+    <None Include="wwwroot\images\chemicalprotection.jpg" />
+    <None Include="wwwroot\images\collagen.jpg" />
+    <None Include="wwwroot\images\filler.jpg" />
+    <None Include="wwwroot\images\fixandmold.jpg" />
+    <None Include="wwwroot\images\hairb.jpg" />
+    <None Include="wwwroot\images\maintenance.jpg" />
+    <None Include="wwwroot\images\sleeknow.jpg" />
+  </ItemGroup>
+
 </Project>
