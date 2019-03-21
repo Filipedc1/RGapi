@@ -50,11 +50,21 @@ namespace RgApi.Services
 
         #region Collection Methods
 
-        public async Task<List<ProductCollection>> GetAllProductCollectionsAsync()
+        public async Task<List<ProductCollection>> GetAllProductCollectionsForCustomersAsync()
         {
             return await _repo.ProductCollections
                               .Include(p => p.CollectionProducts)
                                 .ThenInclude(p => p.Product)
+                                    .ThenInclude(p => p.CustomerPrices)
+                              .ToListAsync();
+        }
+
+        public async Task<List<ProductCollection>> GetAllProductCollectionsForSalonsAsync()
+        {
+            return await _repo.ProductCollections
+                              .Include(p => p.CollectionProducts)
+                                .ThenInclude(p => p.Product)
+                                    .ThenInclude(p => p.SalonPrices)
                               .ToListAsync();
         }
 

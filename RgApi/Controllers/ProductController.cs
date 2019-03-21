@@ -63,11 +63,23 @@ namespace RgApi.Controllers
             return Ok(product);
         }
 
-        [HttpGet("getproductcollections")]
+        [HttpGet("getproductcollectionscustomer")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductCollectionsAsync()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductCollectionsForCustomersAsync()
         {
-            var collections = await _productService.GetAllProductCollectionsAsync();
+            var collections = await _productService.GetAllProductCollectionsForCustomersAsync();
+
+            if (collections is null)
+                return NotFound();
+
+            return Ok(collections);
+        }
+
+        [HttpGet("getproductcollectionssalon")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductCollectionsForSalonsAsync()
+        {
+            var collections = await _productService.GetAllProductCollectionsForSalonsAsync();
 
             if (collections is null)
                 return NotFound();

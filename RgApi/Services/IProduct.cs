@@ -16,7 +16,8 @@ namespace RgApi.Services
 
         // Collections
         Task<ProductCollection> GetProductCollectionByIdAsync(int id);
-        Task<List<ProductCollection>> GetAllProductCollectionsAsync();
+        Task<List<ProductCollection>> GetAllProductCollectionsForCustomersAsync();
+        Task<List<ProductCollection>> GetAllProductCollectionsForSalonsAsync();
         Task CreateProductCollectionAsync(ProductCollection collection);
         Task DeleteProductCollectionAsync(int id);
     }
