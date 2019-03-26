@@ -88,8 +88,8 @@ namespace RgApi.Controllers
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(ClaimTypes.Role, (isSalon == true) ? "Salon" : "Customer") 
+                    new Claim("username", user.UserName),
+                    new Claim("role", (isSalon == true) ? "Salon" : "Customer") 
                 };
 
                 await _userManager.AddClaimsAsync(user, claims);
@@ -101,7 +101,7 @@ namespace RgApi.Controllers
         }
 
         // USED FOR TESTING AUTHORIZATION
-        [Authorize(Policy = "Admin")]
+        [Authorize("Admin")]
         [HttpPost("delete")]
         public ActionResult Delete()
         {

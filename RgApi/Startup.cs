@@ -69,9 +69,9 @@ namespace RgApi
 
             services.AddAuthorization(opt =>
             {
-                opt.AddPolicy("Admin",     policy => { policy.RequireClaim("Admin");    policy.RequireAuthenticatedUser(); });
-                opt.AddPolicy("Salons",    policy => { policy.RequireClaim("Salon");    policy.RequireAuthenticatedUser(); });
-                opt.AddPolicy("Customers", policy => { policy.RequireClaim("Customer"); policy.RequireAuthenticatedUser(); });
+                opt.AddPolicy("Admin",     policy => { policy.RequireClaim("role", "Admin");    policy.RequireAuthenticatedUser(); });
+                opt.AddPolicy("Salons",    policy => { policy.RequireClaim("role", "Salon");    policy.RequireAuthenticatedUser(); });
+                opt.AddPolicy("Customers", policy => { policy.RequireClaim("role", "Customer"); policy.RequireAuthenticatedUser(); });
             });
 
             // add auto mapper
