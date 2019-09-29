@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using RgApi.Interfaces;
 using RgApi.Models;
 using RgApi.Services;
 using RgApi.ViewModels;
@@ -24,7 +25,6 @@ namespace RgApi.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
         private readonly IConfiguration _configuration;
-        //private readonly IMapper _mapper;
         private readonly IUser _userService;
 
         #endregion
@@ -77,7 +77,7 @@ namespace RgApi.Controllers
                 PhoneNumber = model.PhoneNumber,
                 Address = (isSalon == false) ? BuildAddress(model) : null,
                 Salon = (isSalon == true) ? BuildSalon(model) : null,
-                MemberSince = DateTime.Now
+                MemberSince = DateTime.Now,
             };
 
             user.PasswordHash = hasher.HashPassword(user, model.Password);

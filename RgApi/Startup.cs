@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using RgApi.Interfaces;
 using RgApi.Models;
 using RgApi.Services;
 using Swashbuckle.AspNetCore.Swagger;
@@ -79,6 +80,8 @@ namespace RgApi
 
             services.AddScoped<IUser, UserService>();
             services.AddScoped<IProduct, ProductService>();
+            services.AddScoped<IShoppingCart, ShoppingCartService>();
+            services.AddScoped<IOrder, OrderService>();
 
             services.AddMvc()
                     .AddJsonOptions(opt =>

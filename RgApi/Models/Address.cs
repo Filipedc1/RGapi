@@ -25,5 +25,10 @@ namespace RgApi.Models
         [Required]
         [MaxLength(20)]
         public string Zip { get; set; }
+
+        public override string ToString()
+        {
+            return $"{this.Street}, {this.City}, {this.State} {this.Zip}";
+        }
     }
 }

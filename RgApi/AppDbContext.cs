@@ -15,8 +15,13 @@ namespace RgApi
         public DbSet<Salon> Salons                              { get; set; }
         public DbSet<Product> Products                          { get; set; }
         public DbSet<ProductCollection> ProductCollections      { get; set; }
-        public DbSet<CustomerPrice> CustomerPrices              { get; set; }
-        public DbSet<SalonPrice> SalonPrices                    { get; set; }
+        public DbSet<Price> Prices                              { get; set; }
+        public DbSet<CartItem> ShoppingCartItems                { get; set; }
+        public DbSet<State> States                              { get; set; }
+        public DbSet<Order> Orders                              { get; set; }
+        public DbSet<OrderDetail> OrderDetails                  { get; set; }
+        public DbSet<BillingDetail> BillingDetails              { get; set; }
+        public DbSet<Comment> Comment                           { get; set; }
 
         // Junction table
         public DbSet<CollectionProduct> CollectionProducts      { get; set; }

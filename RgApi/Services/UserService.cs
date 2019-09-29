@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RgApi.Interfaces;
 using RgApi.Models;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,16 @@ namespace RgApi.Services
 {
     public class UserService : IUser
     {
-        private readonly AppDbContext _repo;
+        private readonly AppDbContext _database;
 
         public UserService(AppDbContext context)
         {
-            _repo = context;
+            _database = context;
         }
 
         public async Task<IEnumerable<AppUser>> GetAllAsync()
         {
-            return await _repo.AppUsers
+            return await _database.AppUsers
                               .Include(x => x.Claims)
                               .Include(x => x.Address)
                               .ToListAsync();
@@ -26,7 +27,7 @@ namespace RgApi.Services
 
         public async Task<AppUser> GetByIdAsync(string id)
         {
-            return await _repo.AppUsers
+            return await _database.AppUsers
                               .Include(x => x.Claims)
                               .Include(x => x.Address)
                               .FirstOrDefaultAsync(u => u.Id == id);
@@ -34,18 +35,18 @@ namespace RgApi.Services
 
         public async Task<AppUser> GetByUsernameAsync(string username)
         {
-            return await _repo.AppUsers
+            return await _database.AppUsers
                               .Include(x => x.Claims)
                               .Include(x => x.Address)
                               .FirstOrDefaultAsync(u => u.UserName == username);
         }
 
-        public async Task SetProfileImage(string id, string url)
+        public async Task SetProfileImageAsync(string id, string url)
         {
             var user = await GetByIdAsync(id);
             user.ProfileImageUrl = url;
-            _repo.Update(user);
-            await _repo.SaveChangesAsync();
+            _database.Update(user);
+            await _database.SaveChangesAsync();
         }
     }
 }

@@ -4,21 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RgApi.Services
+namespace RgApi.Interfaces
 {
-    public interface IProduct
+    public interface IProductCollection
     {
-        // Products
-        Task<Product> GetProductByIdAsync(int id);
-        Task<List<Product>> GetAllProductsAsync();
-        Task CreateProductAsync(Product product);
-        Task DeleteProductAsync(int id);
-
-        // Collections
         Task<ProductCollection> GetProductCollectionByIdAsync(int id);
         Task<List<ProductCollection>> GetAllProductCollectionsForCustomersAsync();
         Task<List<ProductCollection>> GetAllProductCollectionsForSalonsAsync();
-        Task CreateProductCollectionAsync(ProductCollection collection);
+        Task AddProductCollectionAsync(ProductCollection collection);
         Task DeleteProductCollectionAsync(int id);
     }
 }

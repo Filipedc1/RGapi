@@ -13,8 +13,8 @@ namespace RgApi.Models
         public string ImageUrl      { get; set; }
 
 
-        public virtual IEnumerable<CustomerPrice> CustomerPrices    { get; set; }
-        public virtual IEnumerable<SalonPrice> SalonPrices          { get; set; }
+        public virtual IEnumerable<Price> Prices        { get; set; }
+        public virtual IEnumerable<Comment> Comments    { get; set; }
 
         public ICollection<CollectionProduct> CollectionProducts { get; set; }
     }

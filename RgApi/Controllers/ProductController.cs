@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using RgApi.Interfaces;
 using RgApi.Models;
 using RgApi.Services;
 using RgApi.ViewModels;
@@ -20,7 +21,6 @@ namespace RgApi.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
         private readonly IConfiguration _configuration;
-        //private readonly IMapper _mapper;
         private readonly IProduct _productService;
 
         #endregion
@@ -63,11 +63,11 @@ namespace RgApi.Controllers
             return Ok(product);
         }
 
-        [HttpGet("getproductcollectionscustomer")]
+        [HttpGet("getallproductcollections")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductCollectionsForCustomersAsync()
+        public async Task<ActionResult<IEnumerable<Product>>> GetAllProductCollectionsAsync()
         {
-            var collections = await _productService.GetAllProductCollectionsForCustomersAsync();
+            var collections = await _productService.GetAllProductCollectionsAsync();
 
             if (collections is null)
                 return NotFound();
@@ -75,16 +75,16 @@ namespace RgApi.Controllers
             return Ok(collections);
         }
 
-        [HttpGet("getproductcollectionssalon")]
+        [HttpGet("getproductcollection/{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProductCollectionsForSalonsAsync()
+        public async Task<ActionResult<IEnumerable<Product>>> GetAllProductCollectionAsync(int id)
         {
-            var collections = await _productService.GetAllProductCollectionsForSalonsAsync();
+            var collection = await _productService.GetProductCollectionByIdAsync(id);
 
-            if (collections is null)
+            if (collection is null)
                 return NotFound();
 
-            return Ok(collections);
+            return Ok(collection);
         }
 
         //need to figure out how to add product, and add the collections it will belong to.
