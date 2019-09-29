@@ -11,6 +11,7 @@
 *.userprefs
 Documentation/
 SeedDataScript.cs
+Users.txt
 
 # Build results
 [Dd]ebug/

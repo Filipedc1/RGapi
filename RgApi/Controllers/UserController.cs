@@ -78,6 +78,8 @@ namespace RgApi.Controllers
                 Address = (isSalon == false) ? BuildAddress(model) : null,
                 Salon = (isSalon == true) ? BuildSalon(model) : null,
                 MemberSince = DateTime.Now,
+                IsActive = true
+                //ProfileImageUrl = 
             };
 
             user.PasswordHash = hasher.HashPassword(user, model.Password);
