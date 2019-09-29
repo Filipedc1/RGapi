@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using RgApi.Interfaces;
-using RgApi.Models;
+using RgApi.Shared.Models;
 using RgApi.Services;
 using RgApi.ViewModels;
 

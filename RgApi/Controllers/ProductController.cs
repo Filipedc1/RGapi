@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using RgApi.Interfaces;
-using RgApi.Models;
+using RgApi.Shared.Models;
 using RgApi.Services;
 using RgApi.ViewModels;
 

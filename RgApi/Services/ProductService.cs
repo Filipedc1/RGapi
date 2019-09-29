@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RgApi.Interfaces;
-using RgApi.Models;
+using RgApi.Shared.Models;
 
 namespace RgApi.Services
 {

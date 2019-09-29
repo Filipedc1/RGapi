@@ -18,7 +18,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using RgApi.Interfaces;
-using RgApi.Models;
+using RgApi.Shared.Models;
 using RgApi.Services;
 using Swashbuckle.AspNetCore.Swagger;
 

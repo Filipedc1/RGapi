@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RgApi.Models
+namespace RgApi.Shared.Models
 {
-    public class SalonPrice
+    public class CustomerPrice
     {
         public int Id        { get; set; }
         public string Size   { get; set; }

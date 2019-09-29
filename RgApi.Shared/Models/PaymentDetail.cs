@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RgApi.Models
+namespace RgApi.Shared.Models
 {
     public enum CardType { Credit, Debit }
     public class PaymentDetail

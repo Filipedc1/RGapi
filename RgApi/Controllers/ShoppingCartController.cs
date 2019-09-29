@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RgApi.Interfaces;
-using RgApi.Models;
+using RgApi.Shared.Models;
 
 namespace RgApi.Controllers
 {
