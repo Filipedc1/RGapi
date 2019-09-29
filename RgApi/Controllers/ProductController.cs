@@ -77,7 +77,7 @@ namespace RgApi.Controllers
 
         [HttpGet("getproductcollection/{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Product>>> GetAllProductCollectionAsync(int id)
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductCollectionAsync(int id)
         {
             var collection = await _productService.GetProductCollectionByIdAsync(id);
 
