@@ -10,6 +10,7 @@ namespace RgApi.Interfaces
     {
         Task<IEnumerable<AppUser>> GetAllAsync();
         Task<AppUser> GetByIdAsync(string id);
+        Task<string> GetIdAsync(string username);
         Task<AppUser> GetByUsernameAsync(string username);
         Task SetProfileImageAsync(string userId, string url);
     }

@@ -102,6 +102,18 @@ namespace RgApi.Controllers
             return BadRequest();
         }
 
+        [HttpGet("getuserid/{username}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<string>> GetUserIdAsync(string username)
+        {
+            var userId = await _userService.GetIdAsync(username);
+
+            if (string.IsNullOrEmpty(userId))
+                return NotFound();
+
+            return Ok(userId);
+        }
+
         // USED FOR TESTING AUTHORIZATION
         [Authorize("Admin")]
         [HttpPost("delete")]

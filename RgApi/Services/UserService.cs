@@ -33,6 +33,14 @@ namespace RgApi.Services
                               .FirstOrDefaultAsync(u => u.Id == id);
         }
 
+        public async Task<string> GetIdAsync(string username)
+        {
+            var user = await _database.AppUsers
+                                      .FirstOrDefaultAsync(u => u.UserName == username);
+
+            return user.Id;
+        }
+
         public async Task<AppUser> GetByUsernameAsync(string username)
         {
             return await _database.AppUsers
